@@ -9,13 +9,13 @@
 macOS / Linux
 
 ```sh
-git clone https://github.com/zhaogang8105-ai/book-speed-reader.git ~/.codex/skills/book-speed-reader
+git clone https://github.com/zgang0505-fly/book-speed-reader.git ~/.codex/skills/book-speed-reader
 ```
 
 Windows PowerShell
 
 ```powershell
-git clone https://github.com/zhaogang8105-ai/book-speed-reader.git "$env:USERPROFILE/.codex/skills/book-speed-reader"
+git clone https://github.com/zgang0505-fly/book-speed-reader.git "$env:USERPROFILE/.codex/skills/book-speed-reader"
 ```
 
 在 Codex 里附上你的书并发送下面这条指令。
