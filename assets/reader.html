@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>图解速读工作台</title>
+  <!-- READER_CSS -->
+</head>
+<body>
+  <header class="header">
+    <div class="container header-inner">
+      <a class="brand" href="#"><span class="brand-mark" aria-hidden="true">读</span>图解速读工作台</a>
+      <span class="header-progress" id="header-progress"></span>
+    </div>
+  </header>
+  <nav class="tabs" aria-label="站点导航">
+    <div class="container tabs-inner">
+      <a href="#read" data-tab="read" aria-current="page">逐章速读</a>
+      <a href="#map" data-tab="map">思维导图</a>
+      <a href="#gallery" data-tab="gallery" hidden>图册</a>
+    </div>
+  </nav>
+
+  <main>
+    <div id="read-view">
+      <section class="hero" aria-labelledby="main-heading">
+        <div class="container hero-grid">
+          <div class="hero-copy">
+            <h1 id="main-heading"></h1>
+            <p class="hero-lede" id="book-intro"></p>
+            <div class="hero-actions">
+              <button type="button" class="button primary" id="start-reading">开始速读</button>
+              <a class="button outline" href="#map">打开思维导图</a>
+            </div>
+          </div>
+          <section class="hero-overview" aria-labelledby="overview-title">
+            <h2 id="overview-title">全书主题</h2>
+            <ul id="hero-topics"></ul>
+          </section>
+        </div>
+      </section>
+
+      <section class="container reading-layout" id="reader" aria-labelledby="reader-heading">
+        <aside class="reading-aside" aria-label="全书阅读进度">
+          <div class="progress-card">
+            <h2 id="reader-heading">阅读进度</h2>
+            <p class="progress-total"><strong id="read-count">0</strong><span id="progress-total"></span></p>
+            <progress id="reading-progress" value="0" aria-label="已读章节进度"></progress>
+            <p class="muted" id="storage-message">进度保存在此浏览器。</p>
+          </div>
+          <nav class="reading-blocks" id="reading-blocks" aria-label="按主题跳读"></nav>
+        </aside>
+
+        <article class="chapter" id="chapter" aria-labelledby="chapter-title">
+          <div class="chapter-top">
+            <span id="chapter-number" class="chapter-number">第 001 章</span>
+            <label for="chapter-select" class="jump-control"><span>跳到</span><select id="chapter-select" aria-label="跳到指定章节"></select></label>
+          </div>
+          <p class="chapter-theme" id="chapter-theme"></p>
+          <h2 id="chapter-title" tabindex="-1"></h2>
+          <section class="summary" aria-labelledby="summary-heading">
+            <h3 id="summary-heading">本章速读</h3>
+            <p id="chapter-summary"></p>
+            <p id="chapter-detail"></p>
+          </section>
+          <section class="chapter-example" aria-labelledby="example-heading">
+            <h3 id="example-heading">书中案例</h3>
+            <ul id="chapter-example"></ul>
+          </section>
+          <p id="reading-complete" class="completed" hidden>全书速读完成。</p>
+          <footer class="chapter-actions">
+            <div class="chapter-links">
+              <button type="button" class="text-button" id="chapter-image" hidden>看相关图解</button>
+              <button type="button" class="text-button" id="unread-chapter" hidden>撤销已读</button>
+            </div>
+            <div class="chapter-buttons">
+              <button type="button" class="button outline" id="previous-chapter">上一章</button>
+              <button type="button" class="button primary" id="next-chapter">读完，下一章</button>
+            </div>
+          </footer>
+          <details class="original" id="original">
+            <summary id="original-toggle"><span id="original-label">展开本章原文</span></summary>
+            <div class="original-panel">
+              <p class="original-status" id="original-status"></p>
+              <div class="original-body" id="original-body"></div>
+              <a class="button outline" id="source-file" hidden>打开源文件</a>
+              <button type="button" class="button outline" id="close-original" hidden>收起原文</button>
+            </div>
+          </details>
+          <p class="sr-only" id="reading-announcement" aria-live="polite"></p>
+        </article>
+      </section>
+    </div>
+
+    <section id="map-view" class="container other-view" hidden aria-labelledby="map-heading">
+      <div class="view-heading">
+        <div><h1 id="map-heading">全书思维导图</h1><p id="map-hint">点击圆点查看分支或章节要点，也可以缩放、拖动图面。</p></div>
+        <div class="map-controls" role="group" aria-label="导图布局">
+          <button type="button" class="button outline" id="collapse-map">一键收起</button>
+          <button type="button" class="button outline" id="expand-map">展开所有章节</button>
+          <button type="button" class="button primary" id="expand-summaries">展开全部摘要</button>
+          <button type="button" class="button outline" id="fit-map">适应画面</button>
+        </div>
+      </div>
+      <div class="map-frame" id="map-frame" tabindex="0" role="region" aria-label="全书导图" aria-describedby="map-hint">
+        <svg id="mindmap" role="group" aria-label="全书主题、章节和摘要"></svg>
+      </div>
+    </section>
+
+    <section id="gallery-view" class="container other-view" hidden aria-labelledby="gallery-heading">
+      <div class="view-heading"><h1 id="gallery-heading">读书图册</h1></div>
+      <div class="gallery" id="gallery-grid"></div>
+    </section>
+  </main>
+
+  <dialog id="image-viewer" aria-labelledby="image-title">
+    <div class="viewer-top">
+      <h2 id="image-title"></h2>
+      <button type="button" class="button outline" id="close-image">关闭</button>
+    </div>
+    <div class="viewer-image-wrap"><img id="large-image" alt=""></div>
+  </dialog>
+  <footer class="footer"><div class="container" id="source-name"></div></footer>
+  <!-- VENDOR_LICENSES -->
+  <!-- BOOK_DATA -->
+  <!-- MAP_RUNTIME -->
+  <!-- READER_RUNTIME -->
+</body>
+</html>
